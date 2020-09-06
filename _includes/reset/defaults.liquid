@@ -12,7 +12,7 @@
 {%- endcapture -%}
 
 {% comment %} cdn {% endcomment %}
-{%- if site.debug -%}
+{%- if jekyll.environment != "production" -%}
     {%- assign cdn = site.baseurl -%}
 {%- else -%}
     {%- assign cdn = "https://cdn.jsdelivr.net/gh/rundocs/jekyll-rtd-theme@" | append: version -%}
