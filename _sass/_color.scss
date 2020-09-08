@@ -5,11 +5,16 @@ $gutter: 1.5em;
   @for $level from 1 through 12 {
     @if $level % 4 == 0 {
       --toc-#{$level}: #{darken($white, 4 * 8.8%)};
-    }
-    @else {
+    } @else {
       --toc-#{$level}: #{darken($white, $level % 4 * 8.8%)};
     }
   }
+}
+
+body {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
 }
 
 .container {
@@ -61,6 +66,24 @@ $gutter: 1.5em;
 .markdown-body {
   font-weight: 400;
   color: #404040;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+
+  h1,
+  h1,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Roboto-Slab";
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  table {
+    font-size: 90%;
+  }
 }
 
 .sidebar {
@@ -108,7 +131,6 @@ $gutter: 1.5em;
   color: grey;
   background: #1f1d1d;
 }
-
 @media screen and (min-width: 1280px) {
   .container {
     background: rgba(0, 0, 0, 0.05);
