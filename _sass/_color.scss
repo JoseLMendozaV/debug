@@ -5,7 +5,8 @@ $gutter: 1.5em;
   @for $level from 1 through 12 {
     @if $level % 4 == 0 {
       --toc-#{$level}: #{darken($white, 4 * 8.8%)};
-    } @else {
+    }
+    @else {
       --toc-#{$level}: #{darken($white, $level % 4 * 8.8%)};
     }
   }
@@ -107,6 +108,7 @@ $gutter: 1.5em;
   color: grey;
   background: #1f1d1d;
 }
+
 @media screen and (min-width: 1280px) {
   .container {
     background: rgba(0, 0, 0, 0.05);
