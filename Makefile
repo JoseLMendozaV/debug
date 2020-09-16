@@ -17,8 +17,10 @@ install:
 	@npm install
 	@bundle install
 
-dest:
+format:
 	@sass-convert -R _sass --from scss --to scss -i
+
+dest: format
 	@rm -f *.gem
 	@bundle exec jekyll clean
 	@npx webpack --mode production
