@@ -1,5 +1,18 @@
 @import "variables";
-@import "color";
+
+/* core */
+@import "@primer/support";
+@import "@primer/base";
+@import "@primer/breadcrumb";
+@import "@primer/buttons";
+@import "@primer/forms";
+@import "@primer/markdown";
+@import "@primer/utilities";
+
+/* theme */
 @import "layout";
-@import "toc";
-@import "fonts";
+@import "main";
+
+/* fonts */
+@import "font-face";
+@import "icons";

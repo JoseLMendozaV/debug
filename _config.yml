@@ -19,6 +19,7 @@ copyright:
 
 debug:
   compress: true
+  extension: false
   development: true
 
 readme_index:
