@@ -1,3 +1,5 @@
+ROUGE_SKINS=base16 base16.dark base16.light base16.monokai base16.monokai.dark base16.monokai.light base16.solarized base16.solarized.dark base16.solarized.light bw colorful github gruvbox gruvbox.dark gruvbox.light igorpro magritte molokai monokai monokai.sublime pastie thankful_eyes tulip
+ROUGE_DEST=assets/css/rougify
 DEBUG=JEKYLL_GITHUB_TOKEN=blank PAGES_API_URL=http://0.0.0.0
 
 help:
@@ -9,6 +11,7 @@ help:
 	@echo "    format	Format the _sass directory"
 	@echo "    theme	Build and install this theme as gem"
 	@echo "    build	Build the site"
+	@echo "    rougify	Build rouge skins"
 	@echo "    server	Make a livereload jekyll server to debug"
 
 
@@ -18,11 +21,11 @@ install:
 	@bundle install
 
 format:
-	@sass-convert -R _sass --from scss --to scss -i
+	@sass-convert --indent=4 -R _sass --from scss --to scss -i
 
 dest: format
-	@rm -f *.gem
 	@bundle exec jekyll clean
+	@rm -f *.gem
 	@npx webpack --mode production
 
 theme: dest
@@ -31,6 +34,14 @@ theme: dest
 
 build: dest
 	@${DEBUG} bundle exec jekyll build --safe --profile
+
+rougify:
+	@rm -rf ${ROUGE_DEST} && mkdir -p ${ROUGE_DEST}
+	@for SKIN in ${ROUGE_SKINS}; \
+	do \
+		rougify style $${SKIN} | scss --sourcemap=none --style compressed > ${ROUGE_DEST}/$${SKIN}.css; \
+		echo "Generated: $${SKIN}"; \
+	done
 
 server: dest
 	@${DEBUG} bundle exec jekyll server --safe --livereload
