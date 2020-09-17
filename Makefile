@@ -23,25 +23,26 @@ install:
 format:
 	@sass-convert --indent=4 -R _sass --from scss --to scss -i
 
-dest: format
-	@bundle exec jekyll clean
-	@rm -f *.gem
+clean:
+	@rm -f *.gem && bundle exec jekyll clean
+
+dist: format clean
 	@npx webpack --mode production
 
-theme: dest
+theme: dist
 	@gem uninstall jekyll-rtd-theme
 	@gem build *.gemspec && gem install *.gem
 
-build: dest
+build: dist
 	@${DEBUG} bundle exec jekyll build --safe --profile
 
 rougify:
 	@rm -rf ${ROUGE_DEST} && mkdir -p ${ROUGE_DEST}
 	@for SKIN in ${ROUGE_SKINS}; \
 	do \
-		rougify style $${SKIN} | scss --sourcemap=none --style compressed > ${ROUGE_DEST}/$${SKIN}.css; \
+		rougify style $${SKIN} | scss --sourcemap=none --style compressed > ${ROUGE_DEST}/$${SKIN}.min.css; \
 		echo "Generated: $${SKIN}"; \
 	done
 
-server: dest
+server: dist
 	@${DEBUG} bundle exec jekyll server --safe --livereload

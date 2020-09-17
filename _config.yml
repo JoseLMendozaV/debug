@@ -19,8 +19,8 @@ copyright:
 
 debug:
   compress: true
+  dist: false
   extension: false
-  development: true
 
 readme_index:
   with_frontmatter: true
